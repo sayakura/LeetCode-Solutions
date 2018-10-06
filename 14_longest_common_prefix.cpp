@@ -10,24 +10,21 @@
 using namespace std;
 string longestCommonPrefix(vector<string>& strs) {
     if (strs.empty()) return "";
-	string prefix = "";
+    string prefix = "";
     for (unsigned int i = 0; i < strs.front().size(); i++)
     {
         char temp = strs.front()[i];
         unsigned int j = 1;
         for (; j < strs.size() ; j++)
         {
-            if (i > strs[j].size() - 1 || temp != strs[j][i])
-                break ;
+            if (i == strs[j].size() || temp != strs[j][i])
+                return (prefix);
         }
-        if (j != strs.size())
-            return (prefix);
-        else
-            prefix.push_back(temp);
+         prefix.push_back(temp);
     }
     return (prefix);
 }
-//better//
+
 string longestCommonPrefix2(vector<string>& strs) {
      if (strs.empty()) return "";
      string prefix = strs[0];
@@ -40,6 +37,20 @@ string longestCommonPrefix2(vector<string>& strs) {
      }
      return (prefix);
 }
+
+string longestCommonPrefix2(vector<string>& strs) {
+     if (strs.empty()) return "";
+     string prefix = strs[0];
+     for (int i = 1; i < strs.size(); i++)
+     {
+        int j = 0;
+        for (; prefix[j] == strs[i][j]; j++)
+            ;
+        prefix = prefix.substr(0, j);
+     }
+     return (prefix);
+}
+
 
 int main(void)
 {
